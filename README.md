@@ -1,2 +1,2 @@
 # WallMart
-An online Ecommerce application
+An online Ecommerce application.

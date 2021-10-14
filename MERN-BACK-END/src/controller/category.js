@@ -16,6 +16,7 @@ function createCategory(categories,parentId=null) {
             _id:cate._id,
             name:cate.name,
             slug:cate.slug,
+            parentId:cate.parentId,
             children:createCategory(categories,cate._id)
         })
     }
@@ -56,7 +57,7 @@ exports.getCategory=(req, res) => {
         if(categories){
             const categoryList=createCategory(categories)
 
-            return res.status(201).json({categoryList})
+            return res.status(200).json({categoryList})
         
         }
     })
