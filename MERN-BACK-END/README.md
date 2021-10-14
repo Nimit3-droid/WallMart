@@ -1,1 +1,0 @@
-Admin app => git@github.com:Nimit3-droid/WallMart.git
