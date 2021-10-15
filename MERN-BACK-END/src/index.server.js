@@ -3,6 +3,7 @@ const env= require('dotenv')
 const app = express();
 // const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
+mongoose.set('useFindAndModify', false);
 
 const authRoutes = require('./routes/auth')
 const adminRoutes = require('./routes/admin/auth')
