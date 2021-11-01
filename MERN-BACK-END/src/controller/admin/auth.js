@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const shortid = require("shortid");
 
 exports.signup = (req, res) => {
-  User.findOne({ email: req.body.email }).exec(async (err, user) => {
+  User.findOne({ email: req.body.email }).exec(async (error, user) => {
     if (user)
       return res.status(400).json({
         message: "user already registered",
@@ -16,11 +16,13 @@ exports.signup = (req, res) => {
       lastName,
       email,
       hash_password,
-      userName:shortid.generate(),
+      username:shortid.generate(),
       role: "admin",
     });
-    _user.save((err, data) => {
-      if (err)
+    _user.save((error, data) => {
+      console.log(_user);
+      console.log(error);
+      if (error)
         return res.status(400).json({
           message: "Something went wrong",
         });
@@ -35,8 +37,8 @@ exports.signup = (req, res) => {
 };
 
 exports.signin = (req, res) => {
-  User.findOne({ email: req.body.email }).exec((err, user) => {
-    if (err) return res.status(400).json({ err });
+  User.findOne({ email: req.body.email }).exec((error, user) => {
+    if (error) return res.status(400).json({ error });
     if (user) {
       if (user.authenticate(req.body.password) && user.role === "admin") {
         const token = jwt.sign(
